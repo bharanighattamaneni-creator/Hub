@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Library Management System | Login</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page">
+<div class="login-shell">
+  <div class="login-brand">
+    <div class="brand-mark">L</div>
+    <div>
+      <h1>Library Management System</h1>
+      <p>Smart library administration</p>
+    </div>
+  </div>
+
+  <div id="message" class="alert hidden"></div>
+
+  <form class="login-card" action="login" method="post">
+    <h2>Welcome back</h2>
+    <p class="muted">Sign in to manage books, members and transactions.</p>
+
+    <label>Username</label>
+    <input name="username" type="text" placeholder="Enter username" autocomplete="username" required>
+
+    <label>Password</label>
+    <input name="password" type="password" placeholder="Enter password" autocomplete="current-password" required>
+
+    <button class="primary-btn" type="submit">Sign in</button>
+
+    <div class="demo-box">
+      <strong>Demo account</strong><br>
+      Username: <b>admin</b> &nbsp; Password: <b>admin123</b>
+    </div>
+  </form>
+</div>
+<script>
+const p = new URLSearchParams(location.search);
+const box = document.getElementById("message");
+if (p.get("error") === "1") {
+  box.textContent = "Invalid username or password.";
+  box.classList.remove("hidden","success");
+}
+if (p.get("error") === "db") {
+  box.textContent = "Database connection failed. Check DB_HOST, DB_NAME, DB_USER and DB_PASSWORD.";
+  box.classList.remove("hidden","success");
+}
+if (p.get("error") === "server") {
+  box.textContent = "Server error. Please check the application logs.";
+  box.classList.remove("hidden","success");
+}
+</script>
+</body>
+</html>

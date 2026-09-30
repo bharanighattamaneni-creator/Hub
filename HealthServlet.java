@@ -1,0 +1,3 @@
+package com.library.controller;
+import com.library.util.DBConnection; import jakarta.servlet.annotation.WebServlet; import jakarta.servlet.http.*; import java.io.*; import java.sql.*;
+@WebServlet("/health") public class HealthServlet extends HttpServlet {protected void doGet(HttpServletRequest req,HttpServletResponse res)throws IOException{res.setContentType("text/plain;charset=UTF-8");try(Connection c=DBConnection.getConnection()){res.getWriter().print("OK - Library application and MySQL connection are working.");}catch(SQLException e){res.setStatus(503);res.getWriter().print("DATABASE_ERROR - "+e.getMessage());}}}
